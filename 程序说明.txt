@@ -1,0 +1,30 @@
+﻿程序名称：守护精灵
+
+SDK版本号：2.2
+
+程序简介：
+本程序主要用来对丢失的Android手机进行跟踪定位，帮助用户找回丢失的手机。还有PC端程序可以把定位信息在Google Maps中显示出来。帮助用户查找定位。
+
+程序详细介绍：
+
+1.功能性介绍：
+手机端程序能够记录当前用户sim卡的imsi号（国际移动用户识别码），用于区别不同的sim卡。每次手机开机后，程序自动获取当前的imsi号同之前的记录进行对比，如果发现imsi号发生变化，就通过用户设定的报警方式进行报警，警报内容包括当前的imsi号和手机号。如果手机真的丢失而不是用户更换手机卡，就可以向新手机号发送用户设定好的暗号短信。手机收到暗号短信后，会自动启动定位服务，通过用户设定的报警方式随时报告当前手机的位置（经纬度）。其中，用户可选的报警方式有邮件报警和短信报警，前者可以把报警信息发送到指定的邮箱，后者则发送到指定的手机，建议用户把这两种报警方式都选上，因为android源码中没有对提取cdma的sim卡手机号的实现，选择短信报警，可以获取新手机卡的手机号，而选择了邮箱报警，用户可以使用作者在电脑端开发的监控软件更好的监控手机的动向。本程序还能设定访问密码，防止未经授权的人查看本程序，保证了安全性。
+为了方便用户对手机位置进行监控，作者还开发了电脑端的定位软件。假如用户选择了邮箱报警，并且邮箱已经收到位置的邮件后。启动电脑端的定位软件，输入报警邮箱的帐号密码，定位软件就会自动到邮箱里面搜索报警邮件，然后提取出经纬度，在Google Maps中显示出手机最近几次移动的路径，方便用户进行跟踪。
+
+
+2.技术性介绍：
+在手机端，检测手机是否换卡和暗号短信的部分，应用的是BroadcastReceiver，分别对开机和新短信的广播进行监控（详见src/Android_phone_apk_src/smsPop/src/bootChecker.java 和 src/Android_phone_apk_src/smsPop/src/smsreceiver.java）。自动定位服务应用的是Service，当收到暗号短信后，smsreciver类就会启动定位服务（详见src/Android_phone_apk_src/smsPop/src/locationsvs.java）。邮件报警服务是使用的javamial包，封装于src/Android_phone_apk_src/smsPop/src/GmailSender.java，其中使用到的jar包路径为src/Android_phone_apk_src/smsPop/lib）。用户的配置信息应用的是SharedPreferences（详见src/Android_phone_apk_src/smsPop/src/SharedPreferencesHelper.java）。其他的小功能（比如发短信，获取地理位置）则是调用android系统提供的api。
+在电脑端，代码用python编写，分为windows版本(src/PC_python_src/aPhoneLocate/aPhoneLocate_windows.py)和ubuntu版本（src/PC_python_src/aPhoneLocate/aPhoneLocate_ubuntu.py）。其中ubuntu版本有gtk界面，采用python+glade开发，windows版本没有界面，只提供了命令行工具。对于提取邮件中的经纬度，采用的是python的imaplib模块，封装于src/PC_python_src/aPhoneLocate/FetchMail.py中。对于获取手机的运动路径，则是通过python调用Google Static Maps API获取到的。
+
+
+3.程序使用方法：
+对于手机端，此程序开发SDK的版本号为2.2，并且经过测试无bug，不保证在其他版本SDK运行的可靠性。首先把程序安装到手机上，如果电脑上安装了Adnroid SDK，则可以通过运行命令 adb install 守护精灵.apk，或者拷贝到sd卡，通过文件管理器安装等等。然后，打开守护精灵，就可以看到守护精灵的界面了，如截图“手机端程序运行效果图.png“所示，守护精灵的界面非常简单。最上面的文本框显示的就是当前sim卡的imsi号，这个不用用户填写，程序运行会自动获取。第二个文本框就是用来设置暗号短信的，当手机丢了后，可以向新号码发送此处指定的暗号短信，建议填写一些有迷惑性的短信。手机收到暗号短信后，就会在后台启动定位服务。第三个文本框是用来设定守护精灵的访问密码的，防止未授权者对本程序设定内容进行修改，如果此处为空，访问本程序不许要密码。剩下部分就是让用户来设定报警方式了，作者推荐两个都进行设定，原因前面说过，在此不再赘述，至于前面说的android源码没有实现获取cdma卡手机号的api，可以阅读http://www.netmite.com/android/mydroid/frameworks/base/telephony/java/android/telephony/TelephonyManager.java。
+当手机丢失后，手机第换卡后，就会收到警报信息，用户就可以获取手机号了。向手机发送暗号短信，就可以等待手机发送的位置报告了。
+对于电脑端的程序，使用python编写，python版本号为2.6，此程序对python3.0不兼容。对于ubuntu版本，需要gtk.glade和pygtk模块，两者ubuntu系统内置。运行aPhoneLocate_ubuntu.py后，输入报警邮箱帐号密码，选择地图类型，缩放等级，点击fresh按钮，过一会儿，本程序的地图就会更新，将手机的移动路径显示出来。对于windows版本，运行aPhoneLocate_windows.py help，会有程序的使用介绍。
+
+
+4.注意事项：
+目前报警邮箱只支持gmail和163的邮箱。
+导入手机端的工程项目后，请记得设置2.2sdk和依赖的javamail包（在src/Android_phone_apk_src/smsPop/lib下）。
+电脑端定位软件点击fresh获取地图时，需要时间，此期间程序可能停止响应。
+
