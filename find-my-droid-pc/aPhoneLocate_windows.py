@@ -2,8 +2,8 @@
 import sys,os,FetchMail
 
 def copyfile(src,dest):
-    fsrc=file(src,"r")
-    fdest=file(dest,"w")
+    fsrc=file(src,"rb")
+    fdest=file(dest,"wb")
     fdest.write(fsrc.read())
     fsrc.close()
     fdest.close()
