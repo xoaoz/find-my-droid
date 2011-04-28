@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+	android:id="@+id/LinearLayout001" 
+	xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:orientation="vertical" android:minWidth="250px" android:minHeight="154px" android:layout_width="250px" android:layout_height="154px" android:layout_marginTop="15px">
+	
+	<TextView 
+		android:id="@+id/TextView001" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:layout_gravity="center" 
+		android:text="请输入密码" android:layout_marginTop="15px">
+	</TextView>
+	
+	<EditText 
+		android:text="" 
+		android:id="@+id/EditText001" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:minWidth="150px"
+		android:layout_gravity="center" android:editable="true" android:password="true" android:enabled="true">
+	</EditText>
+	
+	<Button 
+		android:id="@+id/Button001" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:layout_gravity="center" 
+		android:text="确定">
+	</Button>
+</LinearLayout>

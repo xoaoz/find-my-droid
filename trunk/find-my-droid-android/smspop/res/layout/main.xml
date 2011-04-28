@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:id="@+id/ScrollView01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<TextView  
+		android:name="@+id/tv01"
+    	android:layout_width="fill_parent" 
+    	android:layout_height="wrap_content" 
+    	android:text="sim卡imsi号"
+    	></TextView>
+   
+   	<EditText
+		android:id="@+id/EditText01"
+		android:layout_height="fill_parent" 
+		android:layout_width="wrap_content" 
+		android:minWidth="180px" android:editable="false" android:enabled="true">
+	</EditText>
+	<TextView android:id="@+id/TextView04" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="暗号短信内容 ">
+	</TextView><EditText android:id="@+id/EditText05" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="180px">
+		android:minWidth="150px"
+	</EditText><TextView android:id="@+id/TextView07" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="程序访问密码 ">
+	</TextView><EditText android:text="@+id/EditText07" android:id="@+id/EditText07" android:layout_width="wrap_content" android:layout_height="wrap_content" android:password="true" android:minWidth="180px">
+	</EditText><CheckBox android:id="@+id/CheckBox01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="将报警/报告信息发指定邮箱 ">
+		</CheckBox><TextView 
+		android:id="@+id/TextView01" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" android:text="发信邮箱(目前支持gmail,163邮箱)  ">
+	</TextView>
+	<LinearLayout 
+		android:id="@+id/LinearLayout01" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+		<EditText 
+			android:id="@+id/EditText02" 
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:enabled="true" android:minWidth="180px" android:editable="true"></EditText>
+		
+	</LinearLayout>
+	<TextView 
+		android:id="@+id/TextView02" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text="发信邮箱密码 ">
+	</TextView>
+	<EditText 
+		android:id="@+id/EditText03" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:password="true" android:minWidth="180px"></EditText>
+	
+	<LinearLayout 
+		android:id="@+id/LinearLayout02" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+		
+		
+	</LinearLayout><TextView android:id="@+id/TextView03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="收信邮箱 ">
+	</TextView><EditText android:id="@+id/EditText04" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="180px"></EditText>
+	<CheckBox android:id="@+id/CheckBox02" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="将报警/报告信息发指定手机 ">
+		</CheckBox><TextView 
+		android:id="@+id/TextView05" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text=" 收信手机号 ">
+	</TextView>
+	<LinearLayout 
+		android:id="@+id/LinearLayout03" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+		
+		
+	</LinearLayout><EditText android:id="@+id/EditText06" android:layout_width="wrap_content" android:layout_height="wrap_content" android:phoneNumber="true" android:minWidth="180px">
+			android:minWidth="150px"
+		</EditText>
+	
+	
+	
+	
+	<Button 
+		android:id="@+id/Button01" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:text=" 确定 ">
+	</Button>
+</LinearLayout>
+</ScrollView>
